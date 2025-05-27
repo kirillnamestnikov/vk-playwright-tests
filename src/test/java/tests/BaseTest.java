@@ -43,13 +43,12 @@ public abstract class BaseTest{
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
                 .setHeadless(false)
-                .setSlowMo(100));
+                .setSlowMo(500));
     }
 
     @BeforeEach
     public void createContextAndPage() {
-        context = browser.newContext(new Browser.NewContextOptions()
-                .setViewportSize(2560, 1440));
+        context = browser.newContext(new Browser.NewContextOptions());
         page = context.newPage();
         homePage = new HomePage(page);
     }
@@ -61,11 +60,7 @@ public abstract class BaseTest{
 
     @AfterAll
     public static void closeBrowser() {
-        if (browser != null) {
-            browser.close();
-        }
-        if (playwright != null) {
-            playwright.close();
-        }
+        browser.close();
+        playwright.close();
     }
 }
