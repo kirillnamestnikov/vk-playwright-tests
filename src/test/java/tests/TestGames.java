@@ -1,7 +1,6 @@
 package tests;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +11,7 @@ import pages.GamesPage;
 
 public class TestGames extends BaseTest{
     @BeforeEach
-    public void setupTest(TestInfo info){
+    public void setupTest(){
         homePage = new LoginPage(page).open()
                 .enterEmailAndPassword(getLogin(), getPassword())
                 .submit();
