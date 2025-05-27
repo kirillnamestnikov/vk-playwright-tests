@@ -5,12 +5,14 @@ import io.github.cdimascio.dotenv.Dotenv;
 import pages.HomePage;
 import org.junit.jupiter.api.*;
 import com.microsoft.playwright.*;
+import pages.LoginPage;
 
 public abstract class BaseTest{
     protected static final String BASE_URL = "https://ok.ru";
     protected static final Dotenv DOT_ENV = Dotenv.configure().ignoreIfMissing().load();
     protected HomePage homePage;
     protected Page page;
+    protected LoginPage loginPage;
     protected static Playwright playwright;
     protected static Browser browser;
     protected static BrowserContext context;
