@@ -15,7 +15,15 @@ public abstract class BaseTest{
     protected LoginPage loginPage;
     protected static Playwright playwright;
     protected static Browser browser;
-    protected static BrowserContext context;
+    protected BrowserContext context;
+    protected static String getPassword(String name){
+        return DOT_ENV.get("OK_PASSWORD_" + name.toUpperCase(), System.getenv("OK_PASSWORD_" + name.toUpperCase()));
+    }
+
+    protected static String getLogin(String name){
+        return DOT_ENV.get("OK_LOGIN_" + name.toUpperCase(), System.getenv("OK_LOGIN_" + name.toUpperCase()));
+    }
+
     protected static String getPassword(){
         return DOT_ENV.get("OK_PASSWORD", System.getenv("OK_PASSWORD"));
     }
