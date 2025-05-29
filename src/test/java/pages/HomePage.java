@@ -3,6 +3,7 @@ package pages;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import pages.components.SideBar;
 import tests.utils.ImageUtils;
 
 import java.io.File;
@@ -12,11 +13,13 @@ public class HomePage {
     private final Page page;
     private final Locator avatar;
     private final Locator friendsButton;
+    private final SideBar sideBar;
 
     public HomePage(Page page) {
         this.page = page;
         this.avatar = page.locator("//div[@class='toolbar_avatar']");
         this.friendsButton = page.locator("//a[contains(@href, '/friends')] | //span[text()='Друзья']/..");
+        this.sideBar = new SideBar(page);
     }
 
     public boolean isNotAvatarAvailable() {
@@ -46,8 +49,6 @@ public class HomePage {
                     .setPath(Paths.get(referencePath))
                     .setClip(x, y, width, height)
             );
-
-
             return this;
         }
 
@@ -62,6 +63,10 @@ public class HomePage {
             throw new AssertionError("Визуальные различия обнаружены. См.: " + diffPath);
         }
         return this;
+    }
+
+    public void clickPhotoButton() {
+        sideBar.clickPhotoButton();
     }
 
 }
