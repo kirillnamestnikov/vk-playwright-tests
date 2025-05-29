@@ -8,6 +8,9 @@ import javax.imageio.ImageIO;
 
 public class ImageUtils {
     public static boolean compareImages(String expected, String actual, String diffPath) throws Exception {
+        new File(actual).getParentFile().mkdirs();
+        new File(diffPath).getParentFile().mkdirs();
+
         BufferedImage expectedImage = ImageIO.read(new File(expected));
         BufferedImage actualImage = ImageIO.read(new File(actual));
 

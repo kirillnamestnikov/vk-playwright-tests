@@ -3,6 +3,10 @@ package pages;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import tests.utils.ImageUtils;
+
+import java.io.File;
+import java.nio.file.Paths;
 
 public class HomePage {
     private final Page page;
@@ -29,4 +33,35 @@ public class HomePage {
         }
         return this;
     }
+
+    public HomePage visualTestSideBar(
+            int x, int y, int width, int height,
+            String actualPath, String referencePath, String diffPath) throws Exception {
+
+        File referenceFile = new File(referencePath);
+        if (!referenceFile.exists()) {
+            referenceFile.getParentFile().mkdirs();
+
+            page.screenshot(new Page.ScreenshotOptions()
+                    .setPath(Paths.get(referencePath))
+                    .setClip(x, y, width, height)
+            );
+
+
+            return this;
+        }
+
+        page.screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get(actualPath))
+                .setClip(x, y, width, height)
+        );
+
+        boolean isMatch = ImageUtils.compareImages(referencePath, actualPath, diffPath);
+
+        if (!isMatch) {
+            throw new AssertionError("Визуальные различия обнаружены. См.: " + diffPath);
+        }
+        return this;
+    }
+
 }
