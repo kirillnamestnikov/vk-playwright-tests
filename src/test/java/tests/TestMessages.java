@@ -18,16 +18,18 @@ public class TestMessages extends BaseTest{
         Page user1Page = user1Context.newPage();
         Page user2Page = user2Context.newPage();
 
+        String sender = "technopol56";
         HomePage user1MessagePage = new LoginPage(user1Page)
                 .open()
-                .enterEmailAndPassword(getLogin("technopol56"), getPassword("technopol56"))
+                .enterEmailAndPassword(getLogin(sender), getPassword(sender))
                 .submit();
+        String receiver = "technopol42";
         HomePage user2MessagePage = new LoginPage(user2Page)
                 .open()
-                .enterEmailAndPassword(getLogin("technopol42"), getPassword("technopol42"))
+                .enterEmailAndPassword(getLogin(receiver), getPassword(receiver))
                 .submit();
-        user1MessagePage.openMessages().openChatWith("technopol42").sendMessage("Привет от technopol56");
-        user2MessagePage.openMessages().openChatWith("technopol56").verifyLastMessageFrom("technopol56",
+        user1MessagePage.openMessages().openChatWith(receiver).sendMessage("Привет от technopol56");
+        user2MessagePage.openMessages().openChatWith(sender).verifyLastMessageFrom(sender,
                 "Привет от technopol56");
         user1Context.close();
         user2Context.close();
