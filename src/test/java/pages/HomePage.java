@@ -23,7 +23,7 @@ public class HomePage {
         this.avatar = page.locator("//div[@class='toolbar_avatar']");
         this.friendsButton = page.locator("//a[contains(@href, '/friends')] | //span[text()='Друзья']/..");
         this.sideBar = new SideBar(page);
-        this.gamesButton = page.locator("//a[contains(@href, '/vitrine')] | //span[text()='Игры']/..");
+        this.gamesButton = page.locator("//a[contains(@href, '/games')] | //span[text()='Игры']/..").first();
         this.messagesButton = page.locator("#msg_toolbar_button");
     }
 
