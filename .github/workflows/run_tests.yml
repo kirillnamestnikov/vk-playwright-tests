@@ -1,0 +1,38 @@
+name: OK Playwright Tests
+
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2-
+      - name: Run Playwright tests
+        run: mvn test
+        env:
+          OK_LOGIN: ${{ secrets.OK_LOGIN }}
+          OK_PASSWORD: ${{ secrets.OK_PASSWORD }}
+          OK_LOGIN_TECHNOPOL56: ${{ secrets.OK_LOGIN_TECHNOPOL56 }}
+          OK_PASSWORD_TECHNOPOL56: ${{ secrets.OK_PASSWORD_TECHNOPOL56 }}
+          OK_LOGIN_TECHNOPOL42: ${{ secrets.OK_LOGIN_TECHNOPOL42 }}
+          OK_PASSWORD_TECHNOPOL42: ${{ secrets.OK_PASSWORD_TECHNOPOL42 }}

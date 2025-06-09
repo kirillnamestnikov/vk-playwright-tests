@@ -21,7 +21,7 @@ public class HomePage {
     public HomePage(Page page) {
         this.page = page;
         this.avatar = page.locator("//div[@class='toolbar_avatar']");
-        this.friendsButton = page.locator("//a[contains(@href, '/friends')] | //span[text()='Друзья']/..");
+        this.friendsButton = page.locator("//a[contains(@href, '/friends')] | //span[text()='Friends']/..");
         this.sideBar = new SideBar(page);
         this.gamesButton = page.locator("//a[contains(@href, '/games')] | //span[text()='Игры']/..");
         this.messagesButton = page.locator("#msg_toolbar_button");
