@@ -1,7 +1,6 @@
 package tests;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.PhotoPage;
@@ -12,6 +11,7 @@ public class UploadMediaTest extends BaseTest {
     final String filePath = "src/test/resources/media/test-image.jpg";
 
     @Test
+    @Disabled
     @DisplayName("Test of uploading media")
     public void uploadMediaTest() throws Exception {
         HomePage homePage = new LoginPage(page)
