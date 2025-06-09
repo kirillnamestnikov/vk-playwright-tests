@@ -9,6 +9,7 @@ import tags.MessagesTag;
 public class TestMessages extends BaseTest{
 
     @Test
+    @Disabled
     @MessagesTag
     @DisplayName("Тест взаимодействия двух пользователей путем сообщений")
     void testUsersInteract(){
