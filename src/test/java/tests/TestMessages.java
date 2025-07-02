@@ -5,13 +5,22 @@ import com.microsoft.playwright.Page;
 import org.junit.jupiter.api.*;
 import pages.*;
 import tags.MessagesTag;
+import io.qameta.allure.*;
 
+@Epic(value = "Сообщения")
+@Link("https://t.me/imwizyx")
+@DisplayName("Тесты для проверки функционала сообщений")
 public class TestMessages extends BaseTest{
 
     @Test
     @Disabled
     @MessagesTag
+    @Feature(value = "Отправка сообщения")
     @DisplayName("Тест взаимодействия двух пользователей путем сообщений")
+    @Story("Доставка сообщения от другого пользователя")
+    @Description("Тест проверяет, что один пользователь может отправить другому сообщение и другой пользователь может его прочитать")
+    @Owner("Kirill Namestnikov")
+    @Severity(SeverityLevel.CRITICAL)
     void testUsersInteract(){
         BrowserContext user1Context = browser.newContext();
         BrowserContext user2Context = browser.newContext();

@@ -3,11 +3,13 @@ package pages;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import org.junit.jupiter.api.DisplayName;
 import pages.components.SideBar;
 import tests.utils.ImageUtils;
 
 import java.io.File;
 import java.nio.file.Paths;
+import io.qameta.allure.Step;
 
 public class HomePage {
     private final Page page;
@@ -16,17 +18,20 @@ public class HomePage {
     private final SideBar sideBar;
     private final Locator gamesButton;
     private final Locator messagesButton;
+    private final Locator feedButton;
 
 
     public HomePage(Page page) {
         this.page = page;
         this.avatar = page.locator("//div[@class='toolbar_avatar']");
         this.friendsButton = page.locator("//a[contains(@href, '/friends') and @data-l='t,userFriend']");
+        this.feedButton = page.locator("//a[contains(@href, '/feed')] | //span[text()='Лента']/..");
         this.sideBar = new SideBar(page);
         this.gamesButton = page.locator("//a[contains(@href, '/games')] | //span[text()='Игры']/..");
         this.messagesButton = page.locator("#msg_toolbar_button");
     }
 
+    @Step("Проверяем, что аватар недоступен")
     public boolean isNotAvatarAvailable() {
         return !avatar.isVisible();
     }
@@ -42,7 +47,8 @@ public class HomePage {
         return this;
     }
 
-
+    @Step("Делаем скриншот и сравниваем его с эталоном")
+    @DisplayName("Проверка соответствия UI домашней страницы с эталоном")
     public HomePage visualTestSideBar(
             int x, int y, int width, int height,
             String actualPath, String referencePath, String diffPath) throws Exception {
@@ -71,11 +77,13 @@ public class HomePage {
         return this;
     }
 
+    @Step("Нажимаем на кнопку с Фото")
     public void clickPhotoButton() {
         sideBar.clickPhotoButton();
     }
 
 
+    @Step("Открываем страницу с играми")
     public GamesPage openGames(){
         gamesButton.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
@@ -84,6 +92,7 @@ public class HomePage {
         return new GamesPage(page);
     }
 
+    @Step("Открываем страницу с сообщениями")
     public MessagesPage openMessages(){
         messagesButton.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)

@@ -1,8 +1,11 @@
 package pages;
 
+
+import io.qameta.allure.Step;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import org.junit.jupiter.api.DisplayName;
 
 public class LoginPage {
     private final Page page;
@@ -19,12 +22,15 @@ public class LoginPage {
         this.errorMessage = page.locator("//*[contains(@class, 'login_error')]");
     }
 
+    @Step("Проверяем, что открылась страница с логином")
+    @DisplayName("Проверка открытия страницы Login")
     public LoginPage open() {
         page.navigate("https://ok.ru");
         waitForElementsVisible();
         return this;
     }
 
+    @Step("Ждем, пока поля ввода не станут доступными")
     private void waitForElementsVisible() {
         emailField.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
@@ -34,12 +40,14 @@ public class LoginPage {
                 .setTimeout(10000));
     }
 
+    @Step("Заполняем поля с почтой и паролем")
     public LoginPage enterEmailAndPassword(String email, String password) {
         emailField.fill(email);
         passwordField.fill(password);
         return this;
     }
 
+    @Step("Выполняем авторизацию пользователя")
     public HomePage submit() {
         submitButton.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
@@ -48,11 +56,13 @@ public class LoginPage {
         return new HomePage(page);
     }
 
+    @Step("Пробуем пройти авторизацию с неверными данными")
     public LoginPage submitWithError() {
         submitButton.click();
         return this;
     }
 
+    @Step("Проверяем сообщение об ошибке")
     public LoginPage checkErrorMessage() {
         errorMessage.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
