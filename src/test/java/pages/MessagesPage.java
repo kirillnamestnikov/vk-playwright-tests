@@ -3,7 +3,8 @@ package pages;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;
-
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.DisplayName;
 
 public class MessagesPage {
     private final Page page;
@@ -16,6 +17,7 @@ public class MessagesPage {
         this.sendButton = page.locator("//button[@data-tsid='button_send' and @title='Send']").first();
     }
 
+    @Step("Открываем чат с пользователем '{username}'")
     public MessagesPage openChatWith(String username){
         Locator userChat = this.page.locator("//span[text()='" + username +
                 " " + username + "']/..").first();
@@ -23,6 +25,7 @@ public class MessagesPage {
         return this;
     }
 
+    @Step("Отправляем сообщение '{message}'")
     public MessagesPage sendMessage(String message){
         messagesInput.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
@@ -35,6 +38,8 @@ public class MessagesPage {
         return this;
     }
 
+    @Step("Проверяем, что пришло сообщение '{expectedMessage}' от '{expectedUsername}'")
+    @DisplayName("Проверка, что пришло сообщение, которое отправили")
     public MessagesPage verifyLastMessageFrom(String expectedUsername, String expectedMessage){
         openChatWith(expectedUsername);
         Locator lastMessage = this.page.locator("//div[@class='txt-okmsg']").last();

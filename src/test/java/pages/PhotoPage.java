@@ -6,6 +6,8 @@ import com.microsoft.playwright.options.FilePayload;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.DisplayName;
 
 public class PhotoPage {
     private final Page page;
@@ -16,6 +18,7 @@ public class PhotoPage {
         this.uploadButton = page.locator("//span[@data-l=\"t,upload-new-photo\"]/div");
     }
 
+    @Step("Загружаем файл '{filePath}'")
     public void uploadFile(String filePath) throws Exception {
         byte[] fileContent = Files.readAllBytes(Paths.get(filePath));
         String fileName = Paths.get(filePath).getFileName().toString();
@@ -35,6 +38,8 @@ public class PhotoPage {
         page.waitForTimeout(2000);
     }
 
+    @Step("Ждем результатов загрузки")
+    @DisplayName("Проверка успешной загрузки файла")
     public void waitForUploadResultsElement() {
         page.waitForSelector("up-uploading-results",
                 new Page.WaitForSelectorOptions().setTimeout(15000));

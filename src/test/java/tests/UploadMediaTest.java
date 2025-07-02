@@ -6,13 +6,23 @@ import pages.LoginPage;
 import pages.PhotoPage;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import io.qameta.allure.*;
 
+
+@Epic("Загрузка медиа")
+@DisplayName("Тесты для загрузки медиа")
+@Link("https://t.me/imwizyx")
 public class UploadMediaTest extends BaseTest {
     final String filePath = "src/test/resources/media/test-image.jpg";
 
     @Test
     @Disabled
-    @DisplayName("Test of uploading media")
+    @Feature("Загрузка медиа")
+    @Story("Загрузка файла в фотографии пользователя")
+    @DisplayName("Проверка загрузки медиа")
+    @Description("Тест проверяет, что медиа контент успешно загружается в фотографии пользователя")
+    @Owner("Yuliya Mukhina")
+    @Severity(value = SeverityLevel.NORMAL)
     public void uploadMediaTest() throws Exception {
         HomePage homePage = new LoginPage(page)
                 .open()

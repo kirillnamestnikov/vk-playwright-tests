@@ -4,7 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.HomePage;
 import pages.LoginPage;
+import io.qameta.allure.*;
 
+@Epic("Визуал")
+@DisplayName("Визуальные тесты")
+@Link("https://t.me/imwizyx")
 public class VisualTest extends BaseTest {
     private static final int X_SCREENSHOT = 0;
     private static final int Y_SCREENSHOT = 345;
@@ -17,7 +21,12 @@ public class VisualTest extends BaseTest {
 
 
     @Test
-    @DisplayName("Visual testing of home page")
+    @Feature("Визуальный тест домашней страницы")
+    @Story("Взятие скриншота домашней страницы и сравнение его с эталоном")
+    @DisplayName("Проверка соответствия ui домашней страницы с эталоном")
+    @Description("Тест проверяет, что ui домашней страницы соответствует эталону")
+    @Owner("Yuliya Mukhina")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testVisual() throws Exception {
         HomePage homePage = new LoginPage(page)
                 .open()
