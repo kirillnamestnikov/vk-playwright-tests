@@ -6,7 +6,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Test
 @Tag("Login")
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
