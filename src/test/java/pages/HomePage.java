@@ -18,6 +18,7 @@ public class HomePage {
     private final SideBar sideBar;
     private final Locator gamesButton;
     private final Locator messagesButton;
+    private final Locator musicButton;
     private final Locator feedButton;
 
 
@@ -29,6 +30,7 @@ public class HomePage {
         this.sideBar = new SideBar(page);
         this.gamesButton = page.locator("//a[contains(@href, '/games')] | //span[text()='Игры']/..");
         this.messagesButton = page.locator("#msg_toolbar_button");
+        this.musicButton = page.locator("#music_toolbar_button");
     }
 
     @Step("Проверяем, что аватар недоступен")
@@ -101,4 +103,13 @@ public class HomePage {
         return new MessagesPage(page);
     }
 
+    @Step("Открываем страницу с музыкой")
+    public MusicPage openMusic(){
+        musicButton.waitFor(new Locator.WaitForOptions()
+                .setState(WaitForSelectorState.VISIBLE)
+                .setTimeout(10000));
+        musicButton.click();
+        page.waitForTimeout(3000);
+        return new MusicPage(page);
+    }
 }
