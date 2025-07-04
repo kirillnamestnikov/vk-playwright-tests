@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import io.qameta.allure.*;
 
 import pages.LoginPage;
-import tags.GamesTag;
+import tags.pages.GamesTag;
 import pages.GamesPage;
 
 @Epic(value = "Игры")

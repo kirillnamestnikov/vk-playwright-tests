@@ -4,7 +4,8 @@ import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import org.junit.jupiter.api.*;
 import pages.*;
-import tags.MessagesTag;
+import tags.pages.MessagesTag;
+import tags.types.RegressTag;
 import io.qameta.allure.*;
 
 @Epic(value = "Сообщения")
@@ -15,6 +16,7 @@ public class TestMessages extends BaseTest{
     @Test
     @Disabled
     @MessagesTag
+    @RegressTag
     @Feature(value = "Отправка сообщения")
     @DisplayName("Тест взаимодействия двух пользователей путем сообщений")
     @Story("Доставка сообщения от другого пользователя")

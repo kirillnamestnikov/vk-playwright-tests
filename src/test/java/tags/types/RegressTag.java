@@ -1,4 +1,4 @@
-package tags;
+package tags.types;
 
 import org.junit.jupiter.api.*;
 import java.lang.annotation.ElementType;
@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Tag("Messages")
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MessagesTag{
+public @interface RegressTag{
 
 }

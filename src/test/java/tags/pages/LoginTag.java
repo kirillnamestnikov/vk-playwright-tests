@@ -1,4 +1,4 @@
-package tags;
+package tags.pages;
 
 import org.junit.jupiter.api.*;
 import java.lang.annotation.ElementType;
