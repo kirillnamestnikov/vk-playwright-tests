@@ -43,7 +43,7 @@ public class HomePage {
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
 
-        if (!friendsButton.textContent().contains("Друзья")) {
+        if (!friendsButton.textContent().contains("Friends")) {
             throw new AssertionError("На главной странице должна быть кнопка Друзья");
         }
         return this;
@@ -99,6 +99,7 @@ public class HomePage {
         messagesButton.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
+        messagesButton.hover();
         messagesButton.click();
         return new MessagesPage(page);
     }
@@ -108,8 +109,8 @@ public class HomePage {
         musicButton.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
+        musicButton.hover();
         musicButton.click();
-        page.waitForTimeout(3000);
         return new MusicPage(page);
     }
 }
