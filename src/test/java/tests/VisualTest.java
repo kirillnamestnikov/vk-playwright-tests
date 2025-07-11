@@ -1,9 +1,11 @@
 package tests;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.HomePage;
 import pages.LoginPage;
+import tags.pages.VisualTag;
 import io.qameta.allure.*;
 
 @Epic("Визуал")
@@ -21,6 +23,8 @@ public class VisualTest extends BaseTest {
 
 
     @Test
+    @VisualTag
+    @Disabled
     @Feature("Визуальный тест домашней страницы")
     @Story("Взятие скриншота домашней страницы и сравнение его с эталоном")
     @DisplayName("Проверка соответствия ui домашней страницы с эталоном")

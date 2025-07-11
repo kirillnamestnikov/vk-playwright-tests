@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.PhotoPage;
-
+import tags.pages.MediaTag;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import io.qameta.allure.*;
 
@@ -17,6 +17,7 @@ public class UploadMediaTest extends BaseTest {
 
     @Test
     @Disabled
+    @MediaTag
     @Feature("Загрузка медиа")
     @Story("Загрузка файла в фотографии пользователя")
     @DisplayName("Проверка загрузки медиа")

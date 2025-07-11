@@ -49,9 +49,6 @@ public class LoginPage {
 
     @Step("Выполняем авторизацию пользователя")
     public HomePage submit() {
-        submitButton.waitFor(new Locator.WaitForOptions()
-                .setState(WaitForSelectorState.VISIBLE)
-                .setTimeout(10000));
         submitButton.click();
         return new HomePage(page);
     }

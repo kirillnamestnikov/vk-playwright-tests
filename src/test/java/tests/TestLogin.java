@@ -3,7 +3,8 @@ package tests;
 import org.junit.jupiter.api.*;
 import pages.HomePage;
 import pages.LoginPage;
-import tags.LoginTag;
+import tags.pages.LoginTag;
+import tags.types.RegressTag;
 import io.qameta.allure.*;
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +16,7 @@ public class TestLogin extends BaseTest {
 
     @Test
     @LoginTag
+    @RegressTag
     @Feature(value = "Вход по логину и паролю")
     @Story(value = "Успешная авторизация с правильными данными")
     @Description("Тест проверяет успешное прохождение логина и что после нажатия на кнопку submit, пользователь попадает на домашнюю страницу")
@@ -37,6 +39,7 @@ public class TestLogin extends BaseTest {
 
         @Test
         @LoginTag
+        @RegressTag
         @Feature(value = "Получение ошибки при логине с неправильным логином и паролем")
         @DisplayName("Проверка на неуспешный логин с неправильными данными")
         @Description("Тест проверяет, что появляется ошибка, если попробовать пройти авторизацию с неправильным логином и паролем")
@@ -52,6 +55,7 @@ public class TestLogin extends BaseTest {
 
         @Test
         @LoginTag
+        @RegressTag
         @Feature(value = "Получение ошибки при логине с неправильным логином и правильным паролем")
         @DisplayName("Проверка на неуспешный логин с неправильным логином")
         @Description("Тест проверяет, что появляется ошибка, если попробовать пройти авторизацию с неправильным логином и правильным паролем")
@@ -67,6 +71,7 @@ public class TestLogin extends BaseTest {
 
         @Test
         @LoginTag
+        @RegressTag
         @Feature(value = "Получение ошибки при логине с правильным логином и неправильным паролем")
         @DisplayName("Проверка на неуспешный логин с неправильным паролем")
         @Description("Тест проверяет, что появляется ошибка, если попробовать пройти авторизацию с правильным логином и неправильным паролем")
@@ -82,6 +87,7 @@ public class TestLogin extends BaseTest {
 
         @Test
         @LoginTag
+        @RegressTag
         @Feature(value = "Получение ошибки при логине с пустым логином и паролем")
         @DisplayName("Проверка на неуспешный логин с пустыми данными")
         @Description("Тест проверяет, что появляется ошибка, если попробовать пройти авторизацию с пустым логином и паролем")
@@ -97,6 +103,7 @@ public class TestLogin extends BaseTest {
 
         @Test
         @LoginTag
+        @RegressTag
         @Feature(value = "Получение ошибки при логине с пустым логином и правильным паролем")
         @DisplayName("Проверка на неуспешный логин с пустым логином")
         @Description("Тест проверяет, что появляется ошибка, если попробовать пройти авторизацию с пустым логином и правильным паролем")
@@ -112,6 +119,7 @@ public class TestLogin extends BaseTest {
 
         @Test
         @LoginTag
+        @RegressTag
         @Feature(value = "Получение ошибки при логине с правильным логином и пустым паролем")
         @DisplayName("Проверка на неуспешный логин с пустым паролем")
         @Description("Тест проверяет, что появляется ошибка, если попробовать пройти авторизацию с пустым логином и правильным паролем")
