@@ -105,9 +105,6 @@ public class HomePage {
     @Step("Открываем страницу с сообщениями")
     public MessagesPage openMessages(){
         log.info("Открываем страницу с сообщениями");
-        //messagesButton.waitFor(new Locator.WaitForOptions()
-        //        .setState(WaitForSelectorState.VISIBLE)
-        //        .setTimeout(10000));
         messagesButton.hover();
         messagesButton.click();
         return new MessagesPage(page);
@@ -116,9 +113,6 @@ public class HomePage {
     @Step("Открываем страницу с музыкой")
     public MusicPage openMusic(){
         log.info("Открываем страницу с музыкой");
-        //musicButton.waitFor(new Locator.WaitForOptions()
-        //        .setState(WaitForSelectorState.VISIBLE)
-        //        .setTimeout(10000));
         musicButton.hover();
         musicButton.click();
         return new MusicPage(page);
