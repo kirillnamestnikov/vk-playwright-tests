@@ -4,6 +4,8 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.DisplayName;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pages.components.SideBar;
 import tests.utils.ImageUtils;
 
@@ -12,6 +14,7 @@ import java.nio.file.Paths;
 import io.qameta.allure.Step;
 
 public class HomePage {
+    private static final Logger log = LogManager.getLogger(HomePage.class);
     private final Page page;
     private final Locator avatar;
     private final Locator friendsButton;
@@ -35,10 +38,12 @@ public class HomePage {
 
     @Step("Проверяем, что аватар недоступен")
     public boolean isNotAvatarAvailable() {
+        log.info("Проверяем, что аватар у профиля отсутствует");
         return !avatar.isVisible();
     }
 
     public HomePage checkFriends() {
+        log.info("Проверяем, что кнопка с друзьями присутствует на домашней странице");
         friendsButton.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
@@ -54,7 +59,7 @@ public class HomePage {
     public HomePage visualTestSideBar(
             int x, int y, int width, int height,
             String actualPath, String referencePath, String diffPath) throws Exception {
-
+        log.info("Делаем снимок экрана домашней страницы и сверяем его с эталоном");
         File referenceFile = new File(referencePath);
         if (!referenceFile.exists()) {
             referenceFile.getParentFile().mkdirs();
@@ -80,13 +85,16 @@ public class HomePage {
     }
 
     @Step("Нажимаем на кнопку с Фото")
-    public void clickPhotoButton() {
+    public void clickPhotoButton()
+    {
+        log.info("Нажимаем на кнопку с Фото");
         sideBar.clickPhotoButton();
     }
 
 
     @Step("Открываем страницу с играми")
     public GamesPage openGames(){
+        log.info("Открываем страницу с играми");
         gamesButton.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
@@ -96,9 +104,10 @@ public class HomePage {
 
     @Step("Открываем страницу с сообщениями")
     public MessagesPage openMessages(){
-        messagesButton.waitFor(new Locator.WaitForOptions()
-                .setState(WaitForSelectorState.VISIBLE)
-                .setTimeout(10000));
+        log.info("Открываем страницу с сообщениями");
+        //messagesButton.waitFor(new Locator.WaitForOptions()
+        //        .setState(WaitForSelectorState.VISIBLE)
+        //        .setTimeout(10000));
         messagesButton.hover();
         messagesButton.click();
         return new MessagesPage(page);
@@ -106,9 +115,10 @@ public class HomePage {
 
     @Step("Открываем страницу с музыкой")
     public MusicPage openMusic(){
-        musicButton.waitFor(new Locator.WaitForOptions()
-                .setState(WaitForSelectorState.VISIBLE)
-                .setTimeout(10000));
+        log.info("Открываем страницу с музыкой");
+        //musicButton.waitFor(new Locator.WaitForOptions()
+        //        .setState(WaitForSelectorState.VISIBLE)
+        //        .setTimeout(10000));
         musicButton.hover();
         musicButton.click();
         return new MusicPage(page);
