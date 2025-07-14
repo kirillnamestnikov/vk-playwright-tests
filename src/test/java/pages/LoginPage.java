@@ -8,6 +8,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.DisplayName;
+import static constants.login.LoginValues.LOGIN_ERROR_MESSAGE_MASK;
 
 public class LoginPage {
     private static final Logger log = LogManager.getLogger(LoginPage.class);
@@ -74,7 +75,7 @@ public class LoginPage {
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
 
-        if (!errorMessage.textContent().matches(".*(Неправильно указан логин и/или пароль|Введите пароль|Введите логин).*")) {
+        if (!errorMessage.textContent().matches(LOGIN_ERROR_MESSAGE_MASK)) {
             throw new AssertionError("Сообщение об ошибке не соответствует ожидаемому");
         }
         return this;

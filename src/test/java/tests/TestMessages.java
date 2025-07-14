@@ -7,6 +7,9 @@ import pages.*;
 import tags.pages.MessagesTag;
 import tags.types.RegressTag;
 import io.qameta.allure.*;
+import static constants.message.MessageValues.SENDER_NAME;
+import static constants.message.MessageValues.RECEIVER_NAME;
+import static constants.message.MessageValues.MESSAGE_TEXT;
 
 @Epic(value = "Сообщения")
 @Link("https://t.me/imwizyx")
@@ -30,19 +33,17 @@ public class TestMessages extends BaseTest{
         Page user1Page = user1Context.newPage();
         Page user2Page = user2Context.newPage();
 
-        String sender = "technopol56";
         HomePage user1MessagePage = new LoginPage(user1Page)
                 .open()
-                .enterEmailAndPassword(getLogin(sender), getPassword(sender))
+                .enterEmailAndPassword(getLogin(SENDER_NAME), getPassword(SENDER_NAME))
                 .submit();
-        String receiver = "technopol42";
+
         HomePage user2MessagePage = new LoginPage(user2Page)
                 .open()
-                .enterEmailAndPassword(getLogin(receiver), getPassword(receiver))
+                .enterEmailAndPassword(getLogin(RECEIVER_NAME), getPassword(RECEIVER_NAME))
                 .submit();
-        user1MessagePage.openMessages().openChatWith(receiver).sendMessage("Привет от technopol56");
-        user2MessagePage.openMessages().openChatWith(sender).verifyLastMessageFrom(sender,
-                "Привет от technopol56");
+        user1MessagePage.openMessages().openChatWith(RECEIVER_NAME).sendMessage(MESSAGE_TEXT);
+        user2MessagePage.openMessages().openChatWith(SENDER_NAME).verifyLastMessageFrom(SENDER_NAME, MESSAGE_TEXT);
         user1Context.close();
         user2Context.close();
     }

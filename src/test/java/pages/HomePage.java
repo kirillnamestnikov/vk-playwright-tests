@@ -8,10 +8,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pages.components.SideBar;
 import tests.utils.ImageUtils;
-
 import java.io.File;
 import java.nio.file.Paths;
 import io.qameta.allure.Step;
+import static constants.home.HomeValues.FRIENDS_TITLE;
 
 public class HomePage {
     private static final Logger log = LogManager.getLogger(HomePage.class);
@@ -48,7 +48,7 @@ public class HomePage {
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
 
-        if (!friendsButton.textContent().contains("Friends")) {
+        if (!friendsButton.textContent().contains(FRIENDS_TITLE)) {
             throw new AssertionError("На главной странице должна быть кнопка Друзья");
         }
         return this;

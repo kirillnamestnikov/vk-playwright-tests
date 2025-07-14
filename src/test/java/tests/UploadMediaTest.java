@@ -7,14 +7,13 @@ import pages.PhotoPage;
 import tags.pages.MediaTag;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import io.qameta.allure.*;
+import static constants.media.MediaValues.IMAGE_PATH;
 
 
 @Epic("Загрузка медиа")
 @DisplayName("Тесты для загрузки медиа")
 @Link("https://t.me/imwizyx")
 public class UploadMediaTest extends BaseTest {
-    final String filePath = "src/test/resources/media/test-image.jpg";
-
     @Test
     @Disabled
     @MediaTag
@@ -33,7 +32,7 @@ public class UploadMediaTest extends BaseTest {
         homePage.clickPhotoButton();
         PhotoPage photoPage = new PhotoPage(page);
 
-        photoPage.uploadFile(filePath);
+        photoPage.uploadFile(IMAGE_PATH);
 
         assertDoesNotThrow(
                 () -> photoPage.waitForUploadResultsElement(),

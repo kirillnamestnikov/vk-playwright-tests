@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
+import static constants.music.MusicValues.SUGGEST_TITLE;
 
 public class MusicPage {
     private static final Logger log = LogManager.getLogger(MusicPage.class);
@@ -61,7 +62,7 @@ public class MusicPage {
         suggestHeader.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
-        if (!suggestHeader.textContent().startsWith("Track has been added")){
+        if (!suggestHeader.textContent().startsWith(SUGGEST_TITLE)){
             throw new AssertionError("Сообщение о добавлении песни не соответствует ожидаемому");
         }
         addButton.waitFor(new Locator.WaitForOptions()
