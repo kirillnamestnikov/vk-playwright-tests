@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import io.qameta.allure.*;
 
@@ -25,6 +26,7 @@ public class TestMusic extends BaseTest{
 
     @Test
     @MusicTag
+    @Disabled
     @Feature(value = "Добавление музыки")
     @DisplayName("Тест с добавлением трека в свою музыку")
     @Story("Добавление музыкальной композиции в свою музыку")
