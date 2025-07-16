@@ -7,21 +7,12 @@ import pages.HomePage;
 import pages.LoginPage;
 import tags.pages.VisualTag;
 import io.qameta.allure.*;
+import static constants.visual.VisualValues.*;
 
 @Epic("Визуал")
 @DisplayName("Визуальные тесты")
 @Link("https://t.me/imwizyx")
 public class VisualTest extends BaseTest {
-    private static final int X_SCREENSHOT = 0;
-    private static final int Y_SCREENSHOT = 345;
-    private static final int WIDTH_SCREENSHOT = 215;
-    private static final int HEIGHT_SCREENSHOT = 335;
-
-    String referenceScreenshotPath = "src/test/resources/screenshots/homepage-reference.png";
-    String actualScreenshotPath = "src/test/resources/screenshots/actual/actual-homepage.png";
-    String diffScreenshotPath = "src/test/resources/screenshots/diff/diff-homepage.png";
-
-
     @Test
     @VisualTag
     @Disabled
@@ -42,9 +33,9 @@ public class VisualTest extends BaseTest {
                 Y_SCREENSHOT,
                 WIDTH_SCREENSHOT,
                 HEIGHT_SCREENSHOT,
-                actualScreenshotPath,
-                referenceScreenshotPath,
-                diffScreenshotPath
+                ACTUAL_SCREENSHOT_PATH,
+                REFERENCE_SCREENSHOT_PATH,
+                DIFF_SCREENSHOT_PATH
         );
     }
 }

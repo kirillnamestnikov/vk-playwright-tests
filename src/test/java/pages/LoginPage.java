@@ -2,12 +2,16 @@ package pages;
 
 
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.DisplayName;
+import static constants.login.LoginValues.LOGIN_ERROR_MESSAGE_MASK;
 
 public class LoginPage {
+    private static final Logger log = LogManager.getLogger(LoginPage.class);
     private final Page page;
     private final Locator emailField;
     private final Locator passwordField;
@@ -25,6 +29,7 @@ public class LoginPage {
     @Step("Проверяем, что открылась страница с логином")
     @DisplayName("Проверка открытия страницы Login")
     public LoginPage open() {
+        log.info("Проверка, что открылась страница с логином");
         page.navigate("https://ok.ru");
         waitForElementsVisible();
         return this;
@@ -32,6 +37,7 @@ public class LoginPage {
 
     @Step("Ждем, пока поля ввода не станут доступными")
     private void waitForElementsVisible() {
+        log.info("Ждем, пока поля ввода логина и пароля не станут доступными");
         emailField.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
@@ -42,6 +48,7 @@ public class LoginPage {
 
     @Step("Заполняем поля с почтой и паролем")
     public LoginPage enterEmailAndPassword(String email, String password) {
+        log.info("Вводим логин и пароль в форму логина");
         emailField.fill(email);
         passwordField.fill(password);
         return this;
@@ -49,23 +56,26 @@ public class LoginPage {
 
     @Step("Выполняем авторизацию пользователя")
     public HomePage submit() {
+        log.info("Проходим авторизацию пользователя");
         submitButton.click();
         return new HomePage(page);
     }
 
     @Step("Пробуем пройти авторизацию с неверными данными")
     public LoginPage submitWithError() {
+        log.info("Пытаемся пройти авторизацию с неверными данными");
         submitButton.click();
         return this;
     }
 
     @Step("Проверяем сообщение об ошибке")
     public LoginPage checkErrorMessage() {
+        log.info("Проверяем сообщение об ошибке при авторизации с неверными данными");
         errorMessage.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(10000));
 
-        if (!errorMessage.textContent().matches(".*(Неправильно указан логин и/или пароль|Введите пароль|Введите логин).*")) {
+        if (!errorMessage.textContent().matches(LOGIN_ERROR_MESSAGE_MASK)) {
             throw new AssertionError("Сообщение об ошибке не соответствует ожидаемому");
         }
         return this;

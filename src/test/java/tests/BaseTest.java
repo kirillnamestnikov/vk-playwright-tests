@@ -59,6 +59,7 @@ public abstract class BaseTest{
     @BeforeEach
     public void createContextAndPage() {
         context = browser.newContext(new Browser.NewContextOptions());
+        context.addInitScript("window.localStorage.setItem('cookieAccepted', 'true');");
         page = context.newPage();
         homePage = new HomePage(page);
     }
